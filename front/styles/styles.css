@@ -1,0 +1,127 @@
+/** Globales **/
+body, html {
+    margin: 0 auto;
+    width: 100%;
+    background-color: black;
+    color: white;
+   
+}
+h1 {
+    text-align: center;
+    margin: 5px 0px 5px 0px;
+    font-size: 30px;
+    font-weight: bold;
+}
+h2 {
+    text-align: center;
+    margin: 5px 0px 5px 0px;
+    font-size: 20px;
+    font-weight: bold;
+}
+h3 {
+    text-align: justify;
+    margin: 4px 0px 4px 0px;
+}
+p {
+    margin: 10px 0px 10px 0px;
+}
+
+
+
+/** Navegación **/
+.navbar {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    background-color: black;
+    width: 100%;
+    padding: 20px;
+    box-shadow: 0px 1px 3px rgba(255, 255, 255, 0.1);
+    /* box-shadow: desplazamiento_horizontal desplazamiento_vertical difuminado extensión color; */
+}
+.contenedor-links {
+    display: flex;
+    justify-content: space-around;
+    width: 85%;
+}
+.nav-link {
+    color: white;
+    cursor: pointer;
+    transition: 0.5s ease;
+}
+.nav-link:hover {
+    color: rgb(255, 217, 0);
+}
+/* Header */
+.header {
+    padding: 30px;
+    cursor: default;
+    text-align: center;
+}
+/* Main */
+.contenedor-tarjetas {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 0 auto;
+    width: 80%;
+    margin-top: 20px;
+    padding: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0px 1px 20px rgba(48, 48, 48, 0.5);
+    gap: 30px; /* Espacio entre las tarjetas */
+}
+.card-movie {
+    margin: 0px auto;
+}
+.image-container {
+    position: relative; /* Contenedor relativo para que el texto se posicione en relación con la imagen */
+    display: inline-block;
+    width: 300px; /* Establece un ancho fijo para la imagen */
+  }
+  
+.image-movie {
+    width: 100%; 
+    height: auto; 
+  }
+.title {
+    position: absolute;
+    top: 10px; 
+    width: 100%; 
+    background-color: rgba(0, 0, 0, 0.8); 
+    color: white; 
+    padding: 20px 0;
+    text-align: center; 
+    font-size: 18px;
+    transition: 0.5s ease;
+}
+.title:hover {
+    background-color: rgba(249, 253, 0);
+    color: black;
+    font-size: 18px;
+}
+.year {
+    position: absolute;
+    bottom: 5px; 
+    width: 100%; 
+    background-color: rgba(0, 0, 0, 0.8); 
+    color: white; 
+    padding: 15px 0;
+    text-align: center; 
+    font-size: 18px;
+    transition: 0.5s ease;
+  }
+  .year:hover {
+    background-color: rgba(249, 253, 0);
+    color: black;
+}
+.image-movie:hover ~ .title {
+        background-color: rgba(249, 253, 0);
+        color: black;
+        top: 0;
+}
+.image-movie:hover ~ .year {
+    background-color: rgba(249, 253, 0);
+    color: black;
+    bottom: 0;
+}
+
