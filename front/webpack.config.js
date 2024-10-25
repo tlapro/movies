@@ -1,3 +1,5 @@
+const { watch } = require("fs");
+
 module.exports = {
     entry: "./scripts/index.js",
 
@@ -5,4 +7,6 @@ module.exports = {
         path: __dirname + "/public",
         filename: "bundle.js",
     },
+    watch: true,
+    mode: "development",
 };

@@ -40,6 +40,9 @@ p {
     font-size: 12px;
     margin: 15px 0px 15px 0px;
 }
+input {
+    font-family: Arial, Helvetica, sans-serif;
+}
 .text-justify {
     text-align: justify;
 }
@@ -182,5 +185,32 @@ p {
     color: rgb(255, 187, 0);;
 }
 
+/* About */
+.card-effect {
+    transition: 1s ease;
+    cursor: default !important;
+}
+.card-effect:hover {
+    background-color: rgb(10, 10, 10) !important;
+    text-shadow: 1px 1px 5px rgb(0, 0, 0); ;
+}
+.image-about {
+    width: 45%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
 
-
+/* Form */
+.text-form {
+    font-size: 0.8em;
+    text-align: center;
+}
+.form-check-input:checked {
+    background-color: rgb(255, 187, 0);
+    border-color: rgb(255, 187, 0);
+}
+.form-movies {
+    border: 1px solid rgb(34, 34, 34);
+    box-shadow: 0px 1px 5px rgba(255, 187, 0, 0.3);
+    border-radius: 10px;
+}
