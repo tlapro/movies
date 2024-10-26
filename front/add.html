@@ -38,82 +38,91 @@
     
     <div class="container w-50">
         <div>
-            <form class="form-movies p-5">
+            <form class="needs-validation form-movies p-5" novalidate>
                 <h1>Película</h1>
                 <hr>
             <div class="mb-1 text-center">
               <label for="title" class="form-label">Título</label>
               <input type="text" class="form-control text-center" id="title" required>
+              <div class="invalid-feedback">El título es obligatorio.</div>
             </div>
             <div class="mb-1 text-center">
               <label for="year" class="form-label mt-2">Año</label>
-              <input type="text" class="form-control text-center" id="year" required>
+              <input type="number" class="form-control text-center" id="year" min="1921" max="2024" required>
+              <div class="invalid-feedback">Ingresa un año válido, entre 1921 y 2024.</div>
             </div>
             <div class="mb-1 text-center">
                 <label for="director" class="form-label mt-2">Director</label>
                 <input type="text" class="form-control text-center" id="director" required>
+                <div class="invalid-feedback">El nombre del director es obligatorio.</div>
             </div>
             <div class="mb-1 text-center">
                 <label for="duration" class="form-label mt-2">Duración</label>
                 <input type="time" class="form-control text-center" id="duration" required>
+                <div class="invalid-feedback">La duración es obligatoria.</div>
             </div>
             <div class="container mt-3">
                 <div class="row justify-content-center">
                   <div class="col-auto">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="action" value="option1">
-                      <label class="form-check-label" for="action">Action</label>
+                      <input class="form-check-input" type="checkbox" name="check" id="checkbox" value="option1">
+                      <label for="action">Action</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="adventure" value="option2">
-                      <label class="form-check-label" for="adventure">Adventure</label>
+                      <input class="form-check-input" type="checkbox" name="check" id="adventure" value="option2">
+                      <label for="adventure">Adventure</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="comedy" value="option3">
-                      <label class="form-check-label" for="comedy">Comedy</label>
+                      <input class="form-check-input" type="checkbox" name="check" id="comedy" value="option3">
+                      <label for="comedy">Comedy</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="drama" value="option4">
-                      <label class="form-check-label" for="drama">Drama</label>
+                      <input class="form-check-input" type="checkbox" name="check" id="drama" value="option4">
+                      <label for="drama">Drama</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="fantasy" value="option5">
-                      <label class="form-check-label" for="fantasy">Fantasy</label>
+                      <input class="form-check-input" type="checkbox" name="check" id="fantasy" value="option5">
+                      <label for="fantasy">Fantasy</label>
                     </div>
                   </div>
                   <div class="col-auto">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="horror" value="option6">
-                      <label class="form-check-label" for="horror">Horror</label>
+                      <input class="form-check-input" type="checkbox" name="check" id="horror" value="option6">
+                      <label for="horror">Horror</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="mystery" value="option7">
-                      <label class="form-check-label" for="mystery">Mystery</label>
+                      <input class="form-check-input" type="checkbox" name="check" id="mystery" value="option7">
+                      <label for="mystery">Mystery</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="thriller" value="option8">
-                      <label class="form-check-label" for="thriller">Thriller</label>
+                      <input class="form-check-input" type="checkbox" name="check" id="thriller" value="option8">
+                      <label for="thriller">Thriller</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="sci-fi" value="option9">
-                      <label class="form-check-label" for="sci-fi">Sci-Fi</label>
+                      <input class="form-check-input" type="checkbox" name="check" id="sci-fi" value="option9">
+                      <label for="sci-fi">Sci-Fi</label>
                     </div>
                   </div>
+                  <div class="invalid-feedback text-center" id="checkbox-error">
+                    Debes seleccionar al menos un género.
+                </div>
                 </div>
               </div>
               
             <div class="mb-1 text-center">
                 <label for="duration" class="form-label mt-2">Rating</label>
-                <input type="text" class="form-control text-center" id="rating" required>
+                <input type="number" class="form-control text-center" id="rating" min="0" max="10" step="0.01" required>
+                <div class="invalid-feedback">Ingresa una calificación válida entre 0 y 10.</div>
             </div>
             <div class="mb-1 text-center">
                 <label for="duration" class="form-label mt-2">Poster</label>
                 <input type="url" class="form-control text-center" id="poster" required>
+                <div class="invalid-feedback">Ingresa una URL válida para el poster.</div>
             </div>
             <div class="text-center">
-                <button type="submit" class="btn btn-primary mt-3"><b>Submit</b></button>
-                <button type="submit" id="add" class="btn btn-primary btn-warning mt-3"><b>Agregar</b></button>
-                <button type="submit" class="btn btn-primary btn-danger mt-3"><b>Limpiar</b></button>
+                <button type="button" class="btn btn-primary mt-3"><b>Submit</b></button>
+                <button type="button" id="add" class="btn btn-primary btn-warning mt-3"><b>Agregar</b></button>
+                <button type="button" class="btn btn-primary btn-danger mt-3"><b>Limpiar</b></button>
             </div>
           </form>
     </div>
