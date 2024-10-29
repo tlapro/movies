@@ -10,12 +10,16 @@ const section = document.getElementById('movies');
 
         const newDivContainer = document.createElement('div');
         newDivContainer.classList.add('image-container')
+
         const newImg = document.createElement('img');
         newImg.src = movie.poster;
+
         newImg.classList.add('image-movie')
+
         const newTitle = document.createElement('h2');
         newTitle.classList.add('title')
         newTitle.innerHTML = movie.title;
+        
         const newYear = document.createElement('h2');
         newYear.classList.add('year');
         newYear.innerHTML = movie.year;

@@ -28,13 +28,22 @@ durationInput.addEventListener("change", () => {
     const [hours, minutes] = durationInput.value.split(':').map(Number);
     if ((hours === 0 && minutes < 30) || hours > 12) {
         alert('La duración debe ser mayor a 00:30 y menor a 13:00.');
-        durationInput.value = ''; // Limpiar el campo si la validación falla
+        durationInput.value = '';
     }
 })
 
 ratingInput.addEventListener("input", (event) => {
-    ratingInput.value = ratingInput.value.replace(/[^0-9,.]/g, '').replace(',', '.').slice(0, 4);;
+
+    ratingInput.value = ratingInput.value.replace(/,/g, '.').replace(/[^0-9.]/g, '');
+
+
+    const validFormat = /^(10(\.0{0,1})?|[0-9](\.\d{0,2})?)$/;
+
+    if (!validFormat.test(ratingInput.value)) {
+        ratingInput.value = ratingInput.value.slice(0, -1);
+    }
 });
+
 
 ratingInput.addEventListener("input", () => {
      posterInput.value = posterInput.value.replace(/[^a-zA-Z0-9:/._-]/g, "").replace(/(https?:\/\/.*\.(jpg|jpeg|png|gif|svg)).*/, "$1");
@@ -103,6 +112,13 @@ function checkEntries(titleInput, yearInput, directorInput, durationInput, check
     if (!durationRegex.test(durationInput.value)) {
         alert('La duración debe ser mayor a 00:30 y menor a 13:00.');
     }
+    
+    const validFormat = /^(10(\.0{0,1})?|[0-9](\.\d{0,2})?)$/;
+    
+        if (!validFormat.test(ratingInput.value)) {
+            ratingInput.value = ratingInput.value.slice(0, -1);
+            alert("asd")
+        }
 
     const imageUrlPattern = /\.(jpeg|jpg|gif|png|bmp|webp|svg)$/i;
     if (!imageUrlPattern.test(posterInput)) {
@@ -111,3 +127,16 @@ function checkEntries(titleInput, yearInput, directorInput, durationInput, check
 }
 });
 
+const buttonClear = document.getElementById('clear');
+buttonClear.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    const inputs = document.getElementsByTagName('input');
+    for (const input of inputs) {
+        input.value = '';
+    }
+    const checks = document.getElementsByName('check');
+    for (const check of checks) {
+        check.checked = false;
+    }
+});

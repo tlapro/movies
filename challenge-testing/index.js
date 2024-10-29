@@ -9,23 +9,24 @@
 
 class CarritoCompra {
     constructor() {
-        this.carrito = [];
+        this.cart = [];
     }
     agregarProducto(producto) {
-        this.carrito.push(producto);
+        this.cart.push(producto);
     }
     calcularTotal() {
-        let total = 0;
-        for (const item of this.carrito) {
-            total += item.price * item.quantity;
-        }
-        return total;
+        // let total = 0;
+        // for (const item of this.cart) {
+        //     total += item.price * item.quantity;
+        // }
+        // return total;
+        return this.cart.reduce((total, producto) => total + producto.price * producto.quantity, 0);
     }
     aplicarDescuento(porcentaje) {
         return this.calcularTotal() * (100 - porcentaje)/100;
     }
     infoCarrito() {
-        return this.carrito;
+        return this.cart;
     }
 }
 console.log();
