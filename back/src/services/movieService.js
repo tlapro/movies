@@ -1,5 +1,7 @@
 const axios = require("axios");
-class Movie {
+const Movie = require("../models/Movie");
+
+class Movies {
     constructor({ title, poster, director, year, duration, genre, rate }) {
 
         if (!title || !poster || !director) {
@@ -16,16 +18,23 @@ class Movie {
 }
 
 module.exports = {
-    
     getMovies: async () => {
-    try{
-        const data = await axios.get("https://students-api.up.railway.app/movies");
-        const movieData = data.data;
-        const movies = movieData.map(movie => new Movie(movie));
-        return movies;
-    } catch(err) {
-        throw new Error('Error al obtener las películas desde la API externa'); 
+        try {
+            const movies = await Movie.find();
+            return movies;
+        } catch(err) {
+            err("Error al obtener las películas desde la BDD")
+        }
     }
-    }
-
 }
+    // getMovies: async () => {
+    // try{
+    //     const data = await axios.get("https://students-api.up.railway.app/movies");
+    //     const movieData = data.data;
+    //     const movies = movieData.map(movie => new Movie(movie));
+    //     return movies;
+    // } catch(err) {
+    //     throw new Error('Error al obtener las películas desde la API externa'); 
+    // }
+    // }
+

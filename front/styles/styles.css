@@ -158,17 +158,33 @@ input {
     font-weight: bold; 
     color: rgb(255, 230, 0);
     text-shadow: 1px 1px 15px rgb(0, 0, 0); 
-
-    padding: 10px 20px; 
-    margin: 20px auto; 
+    padding: 1px; 
+    margin: 10px auto; 
     text-align: center; 
     transition: transform 0.5s ease; 
     cursor: default;
 }
 
 .carrousel-title:hover {
-    transform: scale(1.05); 
+    transform: scale(1.02); 
     text-shadow: 1px 1px 15px rgb(255, 230, 0); 
+}
+.carrousel-description {
+    color: white;
+    padding: 5px;
+    width: 80%;
+    margin: 0 auto;
+    text-align: justify;
+    cursor: default;
+    transition: transform 0.5s ease;
+    font-size: 0.85em;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-shadow: 1px 1px 10px rgb(0, 0, 0);
+}
+
+.carrousel-description:hover {
+    transform: scale(1.05); 
+    text-shadow: 1px 1px 10px rgb(0, 0, 0);
 }
 
 

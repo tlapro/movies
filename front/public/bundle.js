@@ -15,7 +15,7 @@
   \**************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const renderCards = __webpack_require__(/*! ./renderCards */ \"./scripts/renderCards.js\");\r\nconst axios = __webpack_require__(/*! axios */ \"./node_modules/axios/dist/browser/axios.cjs\");\r\n\r\ndocument.addEventListener(\"DOMContentLoaded\", () => {\r\n    url = \"http://localhost:3000/movies\";\r\n    const fetchMovies  = async () => {\r\n    try{\r\n        const data = await axios.get(url);\r\n        renderCards(data.data)\r\n    } catch(err) {\r\n        console.log(err.message); \r\n    }\r\n}\r\n    fetchMovies()\r\n});\r\n\r\n// $.get(url, (data, status) => {\r\n    //     renderCards(data);\r\n    // });\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\n\n//# sourceURL=webpack://front/./scripts/index.js?");
+eval("const renderCards = __webpack_require__(/*! ./renderCards */ \"./scripts/renderCards.js\");\r\nconst axios = __webpack_require__(/*! axios */ \"./node_modules/axios/dist/browser/axios.cjs\");\r\n\r\n\r\ndocument.addEventListener(\"DOMContentLoaded\", () => {\r\n    url = \"http://localhost:3000/movies\";\r\n    const fetchMovies  = async () => {\r\n    try{\r\n        const data = await axios.get(url);\r\n        renderCards(data.data)\r\n    } catch(err) {\r\n        console.log(err.message); \r\n    }\r\n}\r\n    fetchMovies()\r\n});\r\n\r\n// $.get(url, (data, status) => {\r\n    //     renderCards(data);\r\n    // });\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\n\n//# sourceURL=webpack://front/./scripts/index.js?");
 
 /***/ }),
 
