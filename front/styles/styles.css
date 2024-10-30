@@ -43,6 +43,8 @@ p {
 input {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+
 .text-justify {
     text-align: justify;
 }
@@ -106,8 +108,71 @@ input {
     cursor: default;
     text-align: center;
 }
-/* Main */
+/* Carrusel */
+.carrousel-img {
+    position: relative;
+    max-height: 400px;
+    object-fit: cover;
+    object-position: top;
+    width: 75%;
+}
+.carrousel-container {
+    position: relative;
+    width: 80%;
+    margin: auto;
+  }
+  .carousel-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7); 
+    box-shadow: 0px -20px 20px rgba(0, 0, 0, 0.7);
+    padding: 10px 20px; 
+    text-align: center;
 
+}
+.carousel-inner::before,
+.carousel-inner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px; 
+    pointer-events: none; 
+    z-index: 2;
+  }
+
+  .carousel-inner::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(0, 0, 0, 1), transparent);
+  }
+
+  .carousel-inner::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(0, 0, 0, 1), transparent);
+  }
+  .carrousel-title {
+    position: relative;
+    font-size: 2em; 
+    font-weight: bold; 
+    color: rgb(255, 230, 0);
+    text-shadow: 1px 1px 15px rgb(0, 0, 0); 
+
+    padding: 10px 20px; 
+    margin: 20px auto; 
+    text-align: center; 
+    transition: transform 0.5s ease; 
+    cursor: default;
+}
+
+.carrousel-title:hover {
+    transform: scale(1.05); 
+    text-shadow: 1px 1px 15px rgb(255, 230, 0); 
+}
+
+
+/* Main */
 .contenedor-tarjetas {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
