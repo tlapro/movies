@@ -15,57 +15,47 @@ document.addEventListener("DOMContentLoaded", function () {
     buttonAdd.addEventListener('click', (event) => validateForm(event));
 
     const buttonClear = document.getElementById('clear');
-    buttonClear.addEventListener('click', (event) => clearForm(event));
-
-    titleInput.addEventListener("input", () => {
-            titleInput.value = titleInput.value.replace(/[^a-zA-Z0-9\s\-!,'".:?]+/g, "");
-    });
-
-    yearInput.addEventListener("input", () => {
-        yearInput.value = yearInput.value.replace(/[^0-9]/g, '').slice(0, 4);
-    });
-
-    directorInput.addEventListener("input", () => {
-        directorInput.value = directorInput.value.replace(/[^a-zA-Z\s]/g, "").replace(/ {2,}/g, " ").trimStart();
-    });
-
-    durationInput.addEventListener("keydown", (event) => {
-        event.preventDefault(); 
-    });
-    durationInput.addEventListener("change", () => {
-
-        const [hours, minutes] = durationInput.value.split(':').map(Number);
-        if ((hours === 0 && minutes < 30) || hours > 12) {
-            alert('La duración debe ser mayor a 00:30 y menor a 13:00.');
-            durationInput.value = '';
-        }
-    })
-    ratingInput.addEventListener("input", (event) => {
-
-        ratingInput.value = ratingInput.value.replace(/,/g, '.').replace(/[^0-9.]/g, '');
-        const validFormat = /^(10(\.0{0,1})?|[0-9](\.\d{0,2})?)$/;
-        if (!validFormat.test(ratingInput.value)) {
-            ratingInput.value = ratingInput.value.slice(0, -1);
-        }
-    });
-    ratingInput.addEventListener("input", () => {
-        posterInput.value = posterInput.value.replace(/[^a-zA-Z0-9:/._-]/g, "").replace(/(https?:\/\/.*\.(jpg|jpeg|png|gif|svg)).*/, "$1");
-    });
+    buttonClear.addEventListener('click', (event) => clearForm(event));   
 
 }
 });
-
+function showAlert(icon, title, text) {
+    Swal.fire({
+        icon: icon,
+        title: title,
+        text: text,
+        color: '#FFD700', 
+        background: '#000000', 
+        iconColor: '#FFD700', 
+        confirmButtonColor: '#FFD700', 
+    });
+}
 const validateForm = (event) => {
     const form = document.querySelector('.needs-validation');
     const checkboxError = document.getElementById('checkbox-error')
     const checks = document.getElementsByName('check');
 
-    if (!form.checkValidity()) {
-        event.preventDefault();
-        event.stopPropagation();
-        form.classList.add('was-validated');
+    // if (!titleInput.value || !titleInput.value || !yearInput.value || !directorInput.value || !durationInput.value || !ratingInput.value || !posterInput) {
+    //     showAlert('error', 'Error', 'Debes completar todos los campos');
+    //     return;
+    // }
+
+    if (!checkEntries()) {   
+        if (!form.checkValidity()) {
+            event.preventDefault(); 
+            event.stopPropagation();
+            form.classList.add('was-validated');
         return;
+        }
+    return;
     }
+
+    // if (!form.checkValidity()) {
+    //     event.preventDefault();
+    //     event.stopPropagation();
+    //     form.classList.add('was-validated');
+    //     return;
+    // }
     let anyChecked = false;
     for (const check of checks) {
         if(check.checked) {
@@ -80,9 +70,7 @@ const validateForm = (event) => {
     } else {
         checkboxError.style.display = 'none';
     }
-
-    checkEntries(titleInput.value, yearInput.value, directorInput.value, durationInput.value, ratingInput.value, posterInput.value)
-
+    
     const [hours, minutes] = durationInput.value.split(':').map(Number);
     const durationFormat = `${hours}H ${minutes}Min`;
 
@@ -95,67 +83,59 @@ const validateForm = (event) => {
         rate: ratingInput.value,
         poster: posterInput.value
     };
+    
     sendMovies(movieData);
+
 
 }
     const sendMovies = async (movieData) => {
         try {
             const response = await axios.post('http://localhost:3000/movies', movieData);
-            // console.log(response.data); // Maneja la respuesta del servidor
+            showAlert('sucess', 'Película Creada', 'La película se agregó correctamente.');
+            return;
         } catch (error) {
-            console.error('Error al enviar los datos:', error); // Manejo de errores
-            // Aquí puedes mostrar un mensaje de error al usuario
+            console.error('Error al enviar los datos:', error);
         }
     };  
 
-function checkEntries(titleInput, yearInput, directorInput, durationInput, ratingInput, posterInput) {
-    const checks = document.getElementsByName('check');
-
-    if (typeof titleInput.value !== 'string' || titleInput.value.trim() === '') {
-        //alert('El título debe ser una cadena de texto no vacía.');
-        return;
-    }
-
-    if (typeof yearInput.value !== 'number' || isNaN(yearInput.value) || yearInput.value < 1921 || yearInput.value > 2025){
-        // alert('Por favor, ingresa un año válido entre 1900 y el año actual.');
-        return;
-    }
-
-    const directorRegex = /^[A-Za-z\s]+$/;
-    if (!directorRegex.test(directorInput.value)) {
-        // alert('El director debe contener solo letras y espacios.');
-        return;
-    }
-
-    let anyChecked = false;
-    for (const check of checks) {
-        if(check.checked) {
-            anyChecked = true;
-            break;
+    function checkEntries() {
+    
+        if (typeof titleInput.value !== 'string' || titleInput.value.trim() === '') {
+            showAlert('error', 'Error', 'El título no ha sido ingresado.');
+            return false;
         }
-    }
-    if (anyChecked === false) {
-        // alert("Selecciona el/los género/s de la película.");
-        return;
-    }
-    // Revisar chequeo de duracion de pelicula
-    const durationRegex = /^(0[0-9]|1[0-3]):([3-5][0]|[0-2][0-9]|[3-5][0])$/; // 00:30 a 12:59
-    if (!durationRegex.test(durationInput.value)) {
-        alert('La duración debe ser mayor a 00:30 y menor a 13:00.');
-    }
     
-    const validFormat = /^(10(\.0{0,1})?|[0-9](\.\d{0,2})?)$/;
+        const year = Number(yearInput.value);
+        if (isNaN(year) || year < 1921 || year >= 2025) {
+            showAlert('error', 'Error', 'Por favor, ingresa un año válido entre 1921 y el año actual.');
+            return false;
+        }
     
+        const directorRegex = /^[A-Za-z]+(?:\s[A-Za-z]+)+$/;
+        if (!directorRegex.test(directorInput.value)) {
+            showAlert('error', 'Error', 'El director debe contener al menos un nombre y un apellido, separados por un espacio.');
+            return false;
+        }
+        
+        const timePattern = /^\d{2}:\d{2}$/;
+        if (!timePattern.test(durationInput.value)) {
+        showAlert('error', 'Error', 'Ingresa una duración válida en formato HH:MM');
+        return false;
+        }
+
+        const validFormat = /^(10(\.0{0,1})?|[0-9](\.\d{0,2})?)$/;
         if (!validFormat.test(ratingInput.value)) {
-            ratingInput.value = ratingInput.value.slice(0, -1);
-            alert("asd")
+            showAlert('error', 'Error', 'Coloca el rating en el formato correspondiente. Ejemplo: 7.4');
+            return false;
+        }        
+    
+        const imageUrlPattern = /^(http|https):\/\/.*\.(jpeg|jpg|gif|png|bmp|webp|svg)$/i;
+        if (!imageUrlPattern.test(posterInput.value)) {
+            showAlert('error', 'Error','Por favor, ingresa una URL válida de una imagen.');
+            return false;
         }
-
-    const imageUrlPattern = /\.(jpeg|jpg|gif|png|bmp|webp|svg)$/i;
-    if (!imageUrlPattern.test(posterInput)) {
-        // alert('Por favor, ingresa una URL válida de una imagen.');
+        return true;
     }
-}
 
 const clearForm = (event) => {
 
@@ -168,5 +148,9 @@ const clearForm = (event) => {
     const checks = document.getElementsByName('check');
     for (const check of checks) {
         check.checked = false;
+    }
+    const form = document.querySelector('.needs-validation');
+    if (form) {
+        form.classList.remove('was-validated');
     }
 }    
