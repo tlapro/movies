@@ -2,8 +2,8 @@ const section = document.getElementById('movies');
 
     const renderCards = (data) => {
         data.forEach(movie => {
-            const newDivCard = document.createElement('div');
-            newDivCard.classList.add('card-movie');
+        const newDivCard = document.createElement('div');
+        newDivCard.classList.add('card-movie');
             
         const newLink = document.createElement('a');
         newLink.href = "#"
@@ -41,11 +41,11 @@ const section = document.getElementById('movies');
     function renderInfo(movie, divImg) {
         
         const mInfo = document.createElement('div');
-        mInfo.innerHTML = `<h4>| Duración |</h4><p>${movie.duration}</p>
+        mInfo.innerHTML = `<h4>| Duration |</h4><p>${movie.duration}</p>
         <h4>| Director |</h4>  <p>${movie.director}</p>
-        <h4>| Género | </h4>
+        <h4>| Genre | </h4>
         <p>${movie.genre.join(', ')}</p>
-        <h4>| Rating |</h4> <h5>
+        <h4>| Rate |</h4> <h5>
         <img class="img-star" src="/assets/img/star.png" alt="star">
         ${movie.rate}
         </h5>`;

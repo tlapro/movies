@@ -10,7 +10,7 @@
     
     <link rel="stylesheet" href="/styles/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
@@ -38,7 +38,7 @@
     
     <div class="container w-50">
         <div>
-            <form class="needs-validation form-movies p-5" novalidate>
+            <form class="needs-validation form-movies p-5" id="add-form" novalidate>
                 <h1>Película</h1>
                 <hr>
             <div class="mb-1 text-center">
@@ -65,41 +65,41 @@
                 <div class="row justify-content-center">
                   <div class="col-auto">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="check" id="checkbox" value="option1">
+                      <input class="form-check-input" type="checkbox" name="check" id="checkbox" value="Action">
                       <label for="action">Action</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="check" id="adventure" value="option2">
+                      <input class="form-check-input" type="checkbox" name="check" id="adventure" value="Adventure">
                       <label for="adventure">Adventure</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="check" id="comedy" value="option3">
+                      <input class="form-check-input" type="checkbox" name="check" id="comedy" value="Comedy">
                       <label for="comedy">Comedy</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="check" id="drama" value="option4">
+                      <input class="form-check-input" type="checkbox" name="check" id="drama" value="Drama">
                       <label for="drama">Drama</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="check" id="fantasy" value="option5">
+                      <input class="form-check-input" type="checkbox" name="check" id="fantasy" value="Fantasy">
                       <label for="fantasy">Fantasy</label>
                     </div>
                   </div>
                   <div class="col-auto">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="check" id="horror" value="option6">
+                      <input class="form-check-input" type="checkbox" name="check" id="horror" value="Horror">
                       <label for="horror">Horror</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="check" id="mystery" value="option7">
+                      <input class="form-check-input" type="checkbox" name="check" id="mystery" value="Mystery">
                       <label for="mystery">Mystery</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="check" id="thriller" value="option8">
+                      <input class="form-check-input" type="checkbox" name="check" id="thriller" value="Thriller">
                       <label for="thriller">Thriller</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="check" id="sci-fi" value="option9">
+                      <input class="form-check-input" type="checkbox" name="check" id="sci-fi" value="Sci-Fi">
                       <label for="sci-fi">Sci-Fi</label>
                     </div>
                   </div>
@@ -131,5 +131,7 @@
           <p class="text-center p-5">Página Web creada para el curso de Desarrollo Web FullStack de Henry</p>
         </div>
       </footer>
+      <script src="./scripts/input-validation.js"></script>
       <script src="./scripts/form-validation.js"></script>
+
   </body>

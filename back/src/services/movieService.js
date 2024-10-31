@@ -1,29 +1,21 @@
 const axios = require("axios");
 const Movie = require("../models/Movie");
 
-class Movies {
-    constructor({ title, poster, director, year, duration, genre, rate }) {
-
-        if (!title || !poster || !director) {
-            throw new Error("Las propiedades 'title', 'poster' y 'director' son obligatorias.");
-        }
-        this.title = title;
-        this.year = year;
-        this.director = director;
-        this.duration = duration;
-        this.genre = genre;
-        this.rate = rate;
-        this.poster = poster;
-    }
-}
-
 module.exports = {
     getMovies: async () => {
         try {
             const movies = await Movie.find();
             return movies;
         } catch(err) {
-            err("Error al obtener las películas desde la BDD")
+            err("Error al obtener las películas desde la BDD.")
+        }
+    },
+    createMovie: async (movieData) => {
+        try {
+            const newMovie = await Movie.create(movieData);
+            return newMovie;
+        } catch(err) {
+            err("Error al crear las películas.");
         }
     }
 }

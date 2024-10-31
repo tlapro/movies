@@ -1,6 +1,6 @@
 const renderCards = require("./renderCards");
+const { validateForm, sendMovies } = require("./form-validation");
 const axios = require("axios");
-
 
 document.addEventListener("DOMContentLoaded", () => {
     url = "http://localhost:3000/movies";
@@ -13,7 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 }
     fetchMovies()
+
 });
+
+
 
 // $.get(url, (data, status) => {
     //     renderCards(data);
