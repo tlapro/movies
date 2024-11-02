@@ -4,7 +4,7 @@ const port = 3000;
 
 dbCon().then((res) => {
     app.listen(port, () => {
-        console.log("Servidor escuchando en el puerto 3000"); 
+        console.log("Servidor esperando solicitudes..."); 
     });
 })
 .catch(err => {

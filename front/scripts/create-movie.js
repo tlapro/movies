@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
     yearInput = document.getElementById('year');
     directorInput = document.getElementById('director');
     durationInput = document.getElementById('duration');
-
     ratingInput = document.getElementById('rating');
     posterInput = document.getElementById('poster');
 
@@ -19,26 +18,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 }
 });
-function showAlert(icon, title, text) {
-    Swal.fire({
-        icon: icon,
-        title: title,
-        text: text,
-        color: '#FFD700', 
-        background: '#000000', 
-        iconColor: '#FFD700', 
-        confirmButtonColor: '#FFD700', 
-    });
-}
+
 const validateForm = (event) => {
     const form = document.querySelector('.needs-validation');
     const checkboxError = document.getElementById('checkbox-error')
     const checks = document.getElementsByName('check');
-
-    // if (!titleInput.value || !titleInput.value || !yearInput.value || !directorInput.value || !durationInput.value || !ratingInput.value || !posterInput) {
-    //     showAlert('error', 'Error', 'Debes completar todos los campos');
-    //     return;
-    // }
 
     if (!checkEntries()) {   
         if (!form.checkValidity()) {
@@ -50,12 +34,6 @@ const validateForm = (event) => {
     return;
     }
 
-    // if (!form.checkValidity()) {
-    //     event.preventDefault();
-    //     event.stopPropagation();
-    //     form.classList.add('was-validated');
-    //     return;
-    // }
     let anyChecked = false;
     for (const check of checks) {
         if(check.checked) {
@@ -72,7 +50,7 @@ const validateForm = (event) => {
     }
     
     const [hours, minutes] = durationInput.value.split(':').map(Number);
-    const durationFormat = `${hours}H ${minutes}Min`;
+    const durationFormat = `${hours}h ${minutes}min`;
 
     const movieData = {
         title: titleInput.value,
@@ -91,32 +69,31 @@ const validateForm = (event) => {
     const sendMovies = async (movieData) => {
         try {
             const response = await axios.post('http://localhost:3000/movies', movieData);
-            showAlert('sucess', 'Película Creada', 'La película se agregó correctamente.');
+            showAlert('success', 'Película Creada', 'La película se agregó correctamente.');
             return;
         } catch (error) {
             console.error('Error al enviar los datos:', error);
         }
     };  
 
-    function checkEntries() {
-    
+    function checkEntries() { 
         if (typeof titleInput.value !== 'string' || titleInput.value.trim() === '') {
             showAlert('error', 'Error', 'El título no ha sido ingresado.');
             return false;
         }
-    
+        
         const year = Number(yearInput.value);
         if (isNaN(year) || year < 1921 || year >= 2025) {
             showAlert('error', 'Error', 'Por favor, ingresa un año válido entre 1921 y el año actual.');
             return false;
         }
-    
-        const directorRegex = /^[A-Za-z]+(?:\s[A-Za-z]+)+$/;
+
+        const directorRegex = /^[A-Za-z\,]+(?:\s[A-Za-z\,]+)+$/;
         if (!directorRegex.test(directorInput.value)) {
-            showAlert('error', 'Error', 'El director debe contener al menos un nombre y un apellido, separados por un espacio.');
+            showAlert('error', 'Error', 'El director debe contener al menos un nombre y un apellido, en caso de ser más de un director, separarlos con coma.');
             return false;
         }
-        
+
         const timePattern = /^\d{2}:\d{2}$/;
         if (!timePattern.test(durationInput.value)) {
         showAlert('error', 'Error', 'Ingresa una duración válida en formato HH:MM');
@@ -138,19 +115,22 @@ const validateForm = (event) => {
     }
 
 const clearForm = (event) => {
+    document.querySelector('form').reset();
 
-    event.preventDefault();
-    
-    const inputs = document.getElementsByTagName('input');
-    for (const input of inputs) {
-        input.value = '';
+    const formValidation = document.querySelector('.needs-validation');
+    if (formValidation) {
+        formValidation.classList.remove('was-validated');
     }
-    const checks = document.getElementsByName('check');
-    for (const check of checks) {
-        check.checked = false;
-    }
-    const form = document.querySelector('.needs-validation');
-    if (form) {
-        form.classList.remove('was-validated');
-    }
+    showAlert('success', 'Campos borrados', 'Los campos han sido limpiados con éxito');
 }    
+function showAlert(icon, title, text) {
+    Swal.fire({
+        icon: icon,
+        title: title,
+        text: text,
+        color: '#FFD700', 
+        background: '#000000', 
+        iconColor: '#FFD700', 
+        confirmButtonColor: '#FFD700', 
+    });
+}

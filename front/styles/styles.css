@@ -81,10 +81,12 @@ input {
 .img-logo {
     cursor: pointer;
     width: 100%;
-    transition: 1s ease;
+    transition: transform 0.5s ease;
 }
+
 .img-logo:hover {
-    filter: brightness(150%);
+    transform: rotateY(20deg) rotateX(10deg); 
+    filter: brightness(120%);
 }
 
 .nav-link {
@@ -186,12 +188,10 @@ input {
     transform: scale(1.05); 
     text-shadow: 1px 1px 10px rgb(0, 0, 0);
 }
-
-
 /* Main */
 .contenedor-tarjetas {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     margin: 0 auto;
     width: 80%;
     margin-top: 20px;
@@ -199,7 +199,12 @@ input {
     border: 2px solid rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     box-shadow: 0px 1px 20px rgba(48, 48, 48, 0.5);
-    gap: 30px; /* Espacio entre las tarjetas */
+    gap: 30px;
+}
+@media (min-width: 1199.98px) and (max-width: 1669.98px){
+    .contenedor-tarjetas {
+    grid-template-columns: 1fr 1fr 1fr;
+    }
 }
 @media (min-width: 992px) and (max-width: 1199.98px) {
     .contenedor-tarjetas {
@@ -219,18 +224,19 @@ input {
     display: inline-block;
     width: 300px;
   }
-  
 .image-movie {
     width: 100%; 
-    height: auto; 
+    height: auto;
+    transition: filter 0.3s ease, box-shadow 0.5s ease;
   }
 .image-movie:hover {
     filter: brightness(20%); /* Reduce el brillo para oscurecer la imagen */
     box-shadow: 0px 0px 25px rgb(255, 255, 255);
+    box-shadow: 0px 0px 25px rgba(255, 255, 255, 0.9);
 }
 .title {
     position: absolute;
-    top: 10px; 
+    top: 0px; 
     width: 100%; 
     background-color: rgba(0, 0, 0, 0.8); 
     color: white; 
@@ -245,7 +251,7 @@ input {
 }
 .year {
     position: absolute;
-    bottom: 5px; 
+    bottom: 0px; 
     width: 100%; 
     background-color: rgba(0, 0, 0, 0.8); 
     color: white; 
@@ -259,9 +265,9 @@ input {
     color: black;
 }
 .image-movie:hover ~ .title {
-        background-color: rgba(249, 253, 0);
-        color: black;
-        top: 0;
+    background-color: rgba(249, 253, 0);
+    color: black;
+    top: 0;
 }
 .image-movie:hover ~ .year {
     background-color: rgba(249, 253, 0);
@@ -324,3 +330,6 @@ input {
     color: #dc3545;
     text-align: center;
 }
+input:focus::placeholder {
+    color: transparent; /* Hace que el placeholder sea invisible */
+  }

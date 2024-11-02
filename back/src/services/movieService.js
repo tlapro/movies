@@ -19,14 +19,3 @@ module.exports = {
         }
     }
 }
-    // getMovies: async () => {
-    // try{
-    //     const data = await axios.get("https://students-api.up.railway.app/movies");
-    //     const movieData = data.data;
-    //     const movies = movieData.map(movie => new Movie(movie));
-    //     return movies;
-    // } catch(err) {
-    //     throw new Error('Error al obtener las películas desde la API externa'); 
-    // }
-    // }
-
