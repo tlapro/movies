@@ -24,7 +24,7 @@ const validateForm = (event) => {
     const checkboxError = document.getElementById('checkbox-error')
     const checks = document.getElementsByName('check');
 
-    if (!checkEntries()) {   
+    if (!checkEntries()) {
         if (!form.checkValidity()) {
             event.preventDefault(); 
             event.stopPropagation();
@@ -32,21 +32,6 @@ const validateForm = (event) => {
         return;
         }
     return;
-    }
-
-    let anyChecked = false;
-    for (const check of checks) {
-        if(check.checked) {
-            anyChecked = true;
-            break;
-        }
-    }
-    if (!anyChecked) {
-        event.preventDefault();
-        checkboxError.style.display = 'block';
-        return;
-    } else {
-        checkboxError.style.display = 'none';
     }
     
     const [hours, minutes] = durationInput.value.split(':').map(Number);
@@ -74,9 +59,24 @@ const validateForm = (event) => {
         } catch (error) {
             console.error('Error al enviar los datos:', error);
         }
-    };  
+    };
+    
 
     function checkEntries() { 
+        const checkboxError = document.getElementById('checkbox-error')
+        const checks = document.getElementsByName('check');
+
+        const isCheckboxChecked = Array.from(checks).some(check => check.checked);
+        if (!isCheckboxChecked) {
+            checkboxError.style.display = 'block';
+        } else {
+            checkboxError.style.display = 'none';
+        }
+        if (!titleInput.value || !yearInput.value || !directorInput.value || !durationInput.value || !ratingInput.value || !posterInput.value || !isCheckboxChecked) {
+            showAlert('error', 'Error', 'Todos los campos deben ser completados.');
+            return false;
+        }
+
         if (typeof titleInput.value !== 'string' || titleInput.value.trim() === '') {
             showAlert('error', 'Error', 'El título no ha sido ingresado.');
             return false;
@@ -100,6 +100,11 @@ const validateForm = (event) => {
         return false;
         }
 
+        if (!isCheckboxChecked) {
+            showAlert('error', 'Error', 'Debes seleccionar al menos un género.');
+            return;
+        }
+
         const validFormat = /^(10(\.0{0,1})?|[0-9](\.\d{0,2})?)$/;
         if (!validFormat.test(ratingInput.value)) {
             showAlert('error', 'Error', 'Coloca el rating en el formato correspondiente. Ejemplo: 7.4');
@@ -115,13 +120,17 @@ const validateForm = (event) => {
     }
 
 const clearForm = (event) => {
+    const checkboxError = document.getElementById('checkbox-error')
+    
     document.querySelector('form').reset();
 
     const formValidation = document.querySelector('.needs-validation');
     if (formValidation) {
         formValidation.classList.remove('was-validated');
     }
+    checkboxError.style.display = 'none';
     showAlert('success', 'Campos borrados', 'Los campos han sido limpiados con éxito');
+    
 }    
 function showAlert(icon, title, text) {
     Swal.fire({

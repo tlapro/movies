@@ -5,7 +5,23 @@ document.addEventListener("DOMContentLoaded", function () {
     const durationInput = document.getElementById('duration');
     const ratingInput = document.getElementById('rating');
     const posterInput = document.getElementById('poster');
+    const checkboxError = document.getElementById('checkbox-error')
+    const checks = document.querySelectorAll('input[type="checkbox"]');
     
+    
+    checks.forEach(check => {
+            check.addEventListener("click", () => {
+                const anyChecked = Array.from(checks).some(check => check.checked);
+                
+                if (!anyChecked) {
+                    checkboxError.style.display = 'block';
+                } else {
+                    checkboxError.style.display = 'none';
+                }
+            });
+        });
+    
+
     titleInput.addEventListener("input", () => {
             titleInput.value = titleInput.value.replace(/[^a-zA-Z0-9\s\-!,'".:?]+/g, "");
     });
@@ -36,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ratingInput.addEventListener("input", () => {
         posterInput.value = posterInput.value.replace(/[^a-zA-Z0-9:/._-]/g, "").replace(/(https?:\/\/.*\.(jpg|jpeg|png|gif|svg)).*/, "$1");
     });
+    
 
     
 });

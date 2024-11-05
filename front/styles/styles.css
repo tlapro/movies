@@ -113,7 +113,7 @@ input {
 /* Carrusel */
 .carrousel-img {
     position: relative;
-    max-height: 400px;
+    max-height: 500px;
     object-fit: cover;
     object-position: top;
     width: 75%;
@@ -238,7 +238,7 @@ input {
     position: absolute;
     top: 0px; 
     width: 100%; 
-    background-color: rgba(0, 0, 0, 0.8); 
+    background-color: rgba(0, 0, 0, 0.6); 
     color: white; 
     padding: 20px 0;
     text-align: center; 
@@ -253,7 +253,7 @@ input {
     position: absolute;
     bottom: 0px; 
     width: 100%; 
-    background-color: rgba(0, 0, 0, 0.8); 
+    background-color: rgba(0, 0, 0, 0.6); 
     color: white; 
     padding: 15px 0;
     text-align: center; 

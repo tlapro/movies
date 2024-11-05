@@ -54,7 +54,7 @@
             </div>
             <div class="mb-1 text-center">
                 <label for="director" class="form-label mt-2">Director</label>
-                <input type="text" class="form-control text-center" id="director" placeholder="Ingrese el nombre del director" required>
+                <input type="text" class="form-control text-center" pattern="^[A-Za-z]+(?:\s[A-Za-z,]+)+$" id="director" placeholder="Ingrese el nombre del director" required>
                 <div class="invalid-feedback">El nombre del director es obligatorio.</div>
             </div>
             <div class="mb-1 text-center">
