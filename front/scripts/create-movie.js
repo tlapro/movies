@@ -39,11 +39,11 @@ const validateForm = (event) => {
 
     const movieData = {
         title: titleInput.value,
-        year: yearInput.value,
+        year: Number(yearInput.value),
         director: directorInput.value,
         duration: durationFormat,
         genre: Array.from(checks).filter(check => check.checked).map(check => check.value), 
-        rate: ratingInput.value,
+        rate: Number(ratingInput.value),
         poster: posterInput.value
     };
     
@@ -54,6 +54,7 @@ const validateForm = (event) => {
     const sendMovies = async (movieData) => {
         try {
             const response = await axios.post('http://localhost:3000/movies', movieData);
+            clearForm()
             showAlert('success', 'Película Creada', 'La película se agregó correctamente.');
             return;
         } catch (error) {
@@ -71,10 +72,6 @@ const validateForm = (event) => {
             checkboxError.style.display = 'block';
         } else {
             checkboxError.style.display = 'none';
-        }
-        if (!titleInput.value || !yearInput.value || !directorInput.value || !durationInput.value || !ratingInput.value || !posterInput.value || !isCheckboxChecked) {
-            showAlert('error', 'Error', 'Todos los campos deben ser completados.');
-            return false;
         }
 
         if (typeof titleInput.value !== 'string' || titleInput.value.trim() === '') {
@@ -114,6 +111,10 @@ const validateForm = (event) => {
         const imageUrlPattern = /^(http|https):\/\/.*\.(jpeg|jpg|gif|png|bmp|webp|svg)$/i;
         if (!imageUrlPattern.test(posterInput.value)) {
             showAlert('error', 'Error','Por favor, ingresa una URL válida de una imagen.');
+            return false;
+        }
+        if (!titleInput.value || !yearInput.value || !directorInput.value || !durationInput.value || !ratingInput.value || !posterInput.value || !isCheckboxChecked) {
+            showAlert('error', 'Error', 'Todos los campos deben ser completados.');
             return false;
         }
         return true;

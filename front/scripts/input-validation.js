@@ -8,7 +8,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const checkboxError = document.getElementById('checkbox-error')
     const checks = document.querySelectorAll('input[type="checkbox"]');
     
-    
+
+    function capitalizeFirstLetter(text) {
+        return text.charAt(0).toUpperCase() + text.slice(1);
+    }
+
+    function capitalizeWords(text) {
+        return text
+            .toLowerCase()
+            .split(' ')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+    }
+
+
     checks.forEach(check => {
             check.addEventListener("click", () => {
                 const anyChecked = Array.from(checks).some(check => check.checked);
@@ -23,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
 
     titleInput.addEventListener("input", () => {
-            titleInput.value = titleInput.value.replace(/[^a-zA-Z0-9\s\-!,'".:?]+/g, "");
+        titleInput.value = capitalizeFirstLetter(titleInput.value.replace(/[^a-zA-Z0-9\s\-!,'".:?]+/g, ""));
     });
 
     yearInput.addEventListener("input", () => {
@@ -31,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     directorInput.addEventListener("input", () => {
-        directorInput.value = directorInput.value.replace(/[^a-zA-Z\s\,]/g, "").replace(/ {2,}/g, " ").trimStart();
+        directorInput.value = capitalizeWords(directorInput.value.replace(/[^a-zA-Z\s\,]/g, "").replace(/ {2,}/g, " ").trimStart());
     });
 
     durationInput.addEventListener("change", () => {
