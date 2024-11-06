@@ -1,5 +1,4 @@
 const movieService = require("../services/movieService")
-const catchAsync = require("../utils/catchAsync")
 
     getMovies = async (req, res) => {
         try {
